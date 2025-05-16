@@ -60,6 +60,12 @@ header {
     margin-bottom: 20px;
 }
 
+.main-logo {
+    width: 150px;
+    height: 150px;
+
+}
+
 .logo-img {
     width: 90px;
     height: 90px;
