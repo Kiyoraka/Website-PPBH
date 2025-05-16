@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pondok Bidayatul Hidayah</title>
+    <style>
+        /* assets/css/style.css */
+        :root {
+            --primary-green: #4c7e25;
+            --dark-green: #325119;
+            --light-green: #8abe5a;
+            --accent-brown: #6d4c1d;
+            --bg-light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(var(--light-green) 3px, transparent 3px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        
+        /* Program Styles */
+        .programs {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-green);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-brown);
+            margin: 15px auto 0;
+        }
+        
+        .program-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            padding: 30px;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+        
+        .program-card.from-right {
+            transform: translateX(100px);
+        }
+        
+        .program-card.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .program-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .program-number {
+            background-color: var(--primary-green);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .program-title {
+            color: var(--primary-green);
+            font-size: 24px;
+        }
+        
+        .program-description {
+            margin-bottom: 20px;
+        }
+        
+        .program-details {
+            background-color: var(--bg-light);
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .detail-item {
+            margin-bottom: 10px;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: var(--dark-green);
+        }
+        
+        .highlight {
+            display: inline-block;
+            background-color: var(--light-green);
+            color: var(--dark-green);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .program-target {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .footer-address {
+            margin-bottom: 20px;
+            max-width: 400px;
+        }
+        
+        .footer-contact {
+            margin-bottom: 20px;
+        }
+        
+        .footer-bank {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .footer-bank img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        
+        .footer-bank p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Islamic Pattern */
+        .islamic-pattern {
+            position: relative;
+            height: 60px;
+            overflow: hidden;
+            background-color: var(--primary-green);
+        }
+        
+        .pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(
+                30deg,
+                var(--light-green),
+                var(--light-green) 15px,
+                transparent 15px,
+                transparent 30px
+            );
+            opacity: 0.2;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-text h1 {
+                font-size: 22px;
+            }
+            
+            .program-title {
+                font-size: 20px;
+            }
+            
+            .program-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-pattern"></div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-img">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="#4c7e25" />
+                            <circle cx="50" cy="50" r="35" fill="white" stroke="#4c7e25" stroke-width="2" />
+                            <path d="M50 15 L55 30 L70 30 L60 40 L65 55 L50 45 L35 55 L40 40 L30 30 L45 30 Z" fill="#4c7e25" />
+                            <circle cx="50" cy="50" r="10" fill="#4c7e25" />
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>PONDOK BIDAYATUL HIDAYAH</h1>
+                        <p>UNTUK MASYARAKAT</p>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    HUBUNGI: EN. TAUFIQ - 011-2993 7487
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="islamic-pattern">
+        <div class="pattern"></div>
+    </div>
+    
+    <section class="programs">
+        <div class="container">
+            <h2 class="section-title">PROGRAM KAMI</h2>
+            
+            <div class="program-card" data-direction="left">
+                <div class="program-header">
+                    <div class="program-number">1</div>
+                    <h3 class="program-title">KURSUS ASAS FARDHU AIN</h3>
+                </div>
+                <div class="program-description">
+                    <p>Sebuah program asas ilmu fardhu ain khas untuk golongan muda dan masyarakat yang ingin memperkukuhkan ilmu agama sebelum melangkah ke alam pekerjaan atau perkahwinan.</p>
+                </div>
+                <div class="program-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Pengajian:</span> Pembelajaran Al-Quran (termasuk untuk yang belum boleh membaca) & Pengajian kitab² Fardhu Ain
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Sijil:</span> dikeluarkan selepas tamat kursus
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Penempatan:</span> <span class="highlight">Boleh menetap di Pondok/ulang-alik</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tempoh:</span> <span class="highlight">1 1/2 tahun</span>
+                    </div>
+                </div>
+                <div class="program-target">
+                    <p><strong>Sasaran:</strong> Lepasan SPM & Calon yang ingin berkahwin</p>
+                    <p><strong>• Jantina:</strong> Terbuka kepada lelaki sahaja</p>
+                </div>
+            </div>
+            
+            <div class="program-card from-right" data-direction="right">
+                <div class="program-header">
+                    <div class="program-number">2</div>
+                    <h3 class="program-title">KURSUS IMAM DAN BILAL</h3>
+                </div>
+                <div class="program-description">
+                    <p>Satu program khas untuk melahirkan Imam dan Bilal yang berilmu, berkemahiran, dan berakhlak tinggi untuk berkhidmat di Masjid atau Surau dalam masyarakat.</p>
+                </div>
+                <div class="program-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Pengajian:</span> Hafazan surah² terpilih Al-Quran & kitab² Fardhu Ain
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Sijil:</span> dikeluarkan selepas tamat kursus
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Penempatan:</span> <span class="highlight">Boleh menetap di Pondok/ulang-alik</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tempoh:</span> <span class="highlight">3 tahun</span>
+                    </div>
+                </div>
+                <div class="program-target">
+                    <p><strong>Sasaran:</strong> Lelaki Berumur antara 16 hingga 30 tahun</p>
+                    <p><strong>• Kemasukan Terhad:</strong> Hanya 5 orang sahaja</p>
+                </div>
+            </div>
+            
+            <div class="program-card" data-direction="left">
+                <div class="program-header">
+                    <div class="program-number">3</div>
+                    <h3 class="program-title">KURSUS USTAZ DAN IMAM MASJID/SURAU</h3>
+                </div>
+                <div class="program-description">
+                    <p>Program lanjutan dan mendalam untuk melahirkan golongan Ustaz dan Imam yang mahir dalam pelbagai cabang ilmu agama, bersedia untuk berkhidmat di Masjid, Surau dan masyarakat umum.</p>
+                </div>
+                <div class="program-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Pengajian:</span> Pembelajaran dan bacaan Al-Quran serta ilmu tajwid, Kitab² pondok Fardhu Ain dan Fardhu Kifayah dan Pengajian kitab berbahasa Arab dan Jawi.
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Sijil:</span> dikeluarkan selepas tamat kursus
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Penempatan:</span> <span class="highlight">WAJIB menetap di pondok sepanjang tempoh pengajian</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tempoh:</span> <span class="highlight">> 5 tahun</span>
+                    </div>
+                </div>
+                <div class="program-target">
+                    <p><strong>Sasaran:</strong> Lelaki sahaja, Berumur antara 16 hingga 30 tahun</p>
+                </div>
+            </div>
+            
+            <div class="program-card from-right" data-direction="right">
+                <div class="program-header">
+                    <div class="program-number">4</div>
+                    <h3 class="program-title">PROGRAM TAHFIZ AL-QURAN</h3>
+                </div>
+                <div class="program-description">
+                    <p>Program khas untuk kanak² lelaki yang ingin menghafaz Al-Quran dalam suasana pembelajaran berasaskan pondok dengan bimbingan berterusan.</p>
+                </div>
+                <div class="program-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Fokus Pengajian:</span> Hafazan Al-Quran secara berperingkat dan bersistematik. Bimbingan akhlak dan Asas Fardhu Ain.
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Penempatan:</span> <span class="highlight">WAJIB menetap di Pondok (tiada ulang-alik)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tempoh:</span> <span class="highlight">3 tahun</span>
+                    </div>
+                </div>
+                <div class="program-target">
+                    <p><strong>Sasaran:</strong> Lelaki Berumur antara 9 hingga 12 tahun</p>
+                    <p><strong>• Kemasukan Terhad:</strong> Hanya 5 orang sahaja</p>
+                </div>
+            </div>
+            
+            <div class="program-card" data-direction="left">
+                <div class="program-header">
+                    <div class="program-number">5</div>
+                    <h3 class="program-title">KURSUS INTENSIF FARDHU AIN</h3>
+                </div>
+                <div class="program-description">
+                    <p>Satu kursus pendek dan padat, khas untuk pelajar Universiti dan Kolej yang ingin memperkukuhkan asas ilmu Fardhu Ain sebagai persediaan menghadapi cabaran hidup dan masa depan.</p>
+                </div>
+                <div class="program-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Fokus Pengajian:</span> Pengukuhan Asas Fardhu Ain melalui Kitab² tradisi pondok, bimbingan praktikal dan amali ibadah.
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Penempatan:</span> <span class="highlight">Boleh menetap di Pondok/ulang-alik</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tempoh:</span> <span class="highlight">1 hingga 3 bulan</span>
+                    </div>
+                </div>
+                <div class="program-target">
+                    <p><strong>Sasaran:</strong> Lelaki sahaja, Pelajar Universiti dan Kolej.</p>
+                    <p><strong>• Kapasiti:</strong> Maksimum 20 orang sahaja</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="islamic-pattern">
+        <div class="pattern"></div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" fill="#8abe5a" />
+                        <circle cx="50" cy="50" r="35" fill="#325119" stroke="#8abe5a" stroke-width="2" />
+                        <path d="M50 15 L55 30 L70 30 L60 40 L65 55 L50 45 L35 55 L40 40 L30 30 L45 30 Z" fill="#8abe5a" />
+                        <circle cx="50" cy="50" r="10" fill="#8abe5a" />
+                    </svg>
+                </div>
+                <div class="footer-address">
+                    <p>PONDOK BIDAYATUL HIDAYAH</p>
+                    <p>Lot 169, Kg Bt Hitam, 36800 Kg Gajah, Perak</p>
+                </div>
+                <div class="footer-contact">
+                    <p>HUBUNGI: EN. TAUFIQ - 011-2993 7487</p>
+                </div>
+                <div class="footer-bank">
+                    <p>1005 4610 0000 1236 AGRO BANK</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- assets/js/script.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const programCards = document.querySelectorAll('.program-card');
+            
+            // Check if an element is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8
+                );
+            }
+            
+            // Add animation class when element is in viewport
+            function checkVisibility() {
+                programCards.forEach(function(card) {
+                    if (isInViewport(card)) {
+                        card.classList.add('animate');
+                    }
+                });
+            }
+            
+            // Initial check
+            checkVisibility();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+        });
+    </script>
+</body>
+</html>
