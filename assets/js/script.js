@@ -1,4 +1,3 @@
-// assets/js/script.js
 document.addEventListener('DOMContentLoaded', function() {
     // Animation for program cards on scroll
     const programCards = document.querySelectorAll('.program-card');
@@ -7,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function isInViewport(element) {
         const rect = element.getBoundingClientRect();
         return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9
         );
     }
     
@@ -17,16 +16,24 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isInViewport(card)) {
                 setTimeout(() => {
                     card.classList.add('animate');
-                }, index * 150); // Staggered animation effect
+                }, index * 300); // Slower staggered animation effect
             }
         });
     }
     
     // Initial check
-    checkVisibility();
+    setTimeout(() => {
+        checkVisibility();
+    }, 300); // Add a slight delay before initial check
     
-    // Check on scroll
-    window.addEventListener('scroll', checkVisibility);
+    // Check on scroll with throttling for smoother performance
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(checkVisibility, 100);
+    });
 
     // Smooth scroll for internal links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -46,15 +53,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Highlight button hover effect
-    const buttons = document.querySelectorAll('.btn-apply, .btn-more');
+    // Button hover effect
+    const buttons = document.querySelectorAll('.btn-apply');
     buttons.forEach(button => {
         button.addEventListener('mouseenter', function() {
-            this.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
         });
         
         button.addEventListener('mouseleave', function() {
-            this.style.transition = 'all 0.3s ease';
+            this.style.transition = 'all 0.4s ease';
         });
     });
 
@@ -66,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 whatsappButton.classList.remove('pulse');
             }, 1000);
-        }, 3000);
+        }, 5000);
     }
     
     // Add pulse animation CSS
@@ -85,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         .pulse {
-            animation: pulse 1s;
+            animation: pulse 1.5s ease-in-out;
         }
     `;
     document.head.appendChild(style);
