@@ -2,7 +2,7 @@
 
 A responsive Islamic educational institution website for Pondok Bidayatul Hidayah featuring program information and contact details.
 
-![Pondok Bidayatul Hidayah Logo](assets/img/logo.png)
+![Pondok Bidayatul Hidayah Logo](assets/img/logo.jpg)
 
 ## Overview
 
